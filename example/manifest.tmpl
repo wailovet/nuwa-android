@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+		<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+			package="{{.AppID}}"
+			android:versionCode="{{.Version}}"
+			android:versionName="1.0.{{.Version}}">
+			<uses-sdk android:minSdkVersion="{{.MinSDK}}" android:targetSdkVersion="{{.TargetSDK}}" />
+		{{range .Permissions}}	<uses-permission android:name="{{.}}"/>
+		{{end}}{{range .Features}}	<uses-feature android:{{.}} android:required="false"/>
+		{{end}}	<application {{.IconSnip}} android:usesCleartextTraffic="true" android:label="{{.AppName}}">
+				<activity android:name="org.gioui.GioActivity"
+					android:label="{{.AppName}}"
+					android:theme="@style/Theme.GioApp"
+					android:configChanges="screenSize|screenLayout|smallestScreenSize|orientation|keyboardHidden"
+					android:windowSoftInputMode="adjustResize"
+					android:exported="true">
+					<intent-filter>
+						<action android:name="android.intent.action.MAIN" />
+						<category android:name="android.intent.category.LAUNCHER" />
+					</intent-filter>
+				</activity>
+			</application>
+		</manifest>
