@@ -3,8 +3,8 @@ cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMT
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20201218220906-28db891af037/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
 eliasnaur.com/font v0.0.0-20220124212145-832bb8fc08c3 h1:djFprmHZgrSepsHAIRMp5UJn3PzsoTg9drI+BDmif5Q=
 eliasnaur.com/font v0.0.0-20220124212145-832bb8fc08c3/go.mod h1:OYVuxibdk9OSLX8vAqydtRPP87PyTFcT9uH3MlEGBQA=
-gioui.org v0.0.0-20220731233321-5326ca5fbe51 h1:cUaqVcE/mPwJogQVvEBJKgjzvj+u99Gzoa4zFF4eeVA=
-gioui.org v0.0.0-20220731233321-5326ca5fbe51/go.mod h1:WHoHbUjH91BJS2xkfps2AhKxji+9o3xwfsphGsCBfnM=
+gioui.org v0.0.0-20220414170908-ad7c1eb78df3 h1:LXxgLhA3Yx+MDZ/MLZiw6nDM6+9Lu5S+vSRvQAp9InM=
+gioui.org v0.0.0-20220414170908-ad7c1eb78df3/go.mod h1:A0rb8LTFy1Hhi6/2zppz6CRiGJLAk0akcD1p+77l+fg=
 gioui.org/cpu v0.0.0-20210808092351-bfe733dd3334/go.mod h1:A8M0Cn5o+vY5LTMlnRoK3O5kG+rH0kWfJjeKd9QpBmQ=
 gioui.org/cpu v0.0.0-20210817075930-8d6a761490d2 h1:AGDDxsJE1RpcXTAxPG2B4jrwVUJGFDjINIPi1jtO6pc=
 gioui.org/cpu v0.0.0-20210817075930-8d6a761490d2/go.mod h1:A8M0Cn5o+vY5LTMlnRoK3O5kG+rH0kWfJjeKd9QpBmQ=
@@ -38,10 +38,8 @@ github.com/aws/aws-sdk-go v1.27.0/go.mod h1:KmX6BPdI08NWTb3/sm4ZGu5ShLoqVDhKgpiN
 github.com/aws/aws-sdk-go-v2 v0.18.0/go.mod h1:JWVYvqSMppoMJC0x5wdwiImzgXTI9FuZwxzkQq9wy+g=
 github.com/benoitkugler/pstokenizer v1.0.0/go.mod h1:l1G2Voirz0q/jj0TQfabNxVsa8HZXh/VMxFSRALWTiE=
 github.com/benoitkugler/textlayout v0.0.5/go.mod h1:puH4v13Uz7uIhIH0XMk5jgc8U3MXcn5r3VlV9K8n0D8=
-github.com/benoitkugler/textlayout v0.1.1 h1:hizE/085xAeY8q7gwV00uHR2Q27KYB2g1HW+UacXl68=
-github.com/benoitkugler/textlayout v0.1.1/go.mod h1:o+1hFV+JSHBC9qNLIuwVoLedERU7sBPgEFcuSgfvi/w=
-github.com/benoitkugler/textlayout-testdata v0.1.1 h1:AvFxBxpfrQd8v55qH59mZOJOQjtD6K2SFe9/HvnIbJk=
-github.com/benoitkugler/textlayout-testdata v0.1.1/go.mod h1:i/qZl09BbUOtd7Bu/W1CAubRwTWrEXWq6JwMkw8wYxo=
+github.com/benoitkugler/textlayout v0.0.10 h1:uIaQgH4pBFw1LQ0tPkfjgxo94WYcckzzQaB41L2X84w=
+github.com/benoitkugler/textlayout v0.0.10/go.mod h1:puH4v13Uz7uIhIH0XMk5jgc8U3MXcn5r3VlV9K8n0D8=
 github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24TaqPxmxbtue+5NUziq4I4S80YR8gNf3Q=
 github.com/beorn7/perks v1.0.0/go.mod h1:KWe93zE9D1o94FZ5RNwFwVgaQK1VOXiVxmqh+CedLV8=
 github.com/beorn7/perks v1.0.1/go.mod h1:G2ZrVWU2WbWT9wwq4/hrbKbnv/1ERSJQ0ibhJ6rlkpw=
@@ -440,8 +438,8 @@ github.com/wailovet/lorca v0.0.0-20220730170006-c9e3974c19d7 h1:zpDzBsoMk3hyLWm3
 github.com/wailovet/lorca v0.0.0-20220730170006-c9e3974c19d7/go.mod h1:hcmybp4dUEbjVCeTzmZSn3ee6EJIiYYf5w5E3doi/sA=
 github.com/wailovet/nuwa v0.0.0-20220630140825-046b54961409 h1:OW8cWuN23ymHZ+txpeV/VmVH7/bE6TYemivIp623yok=
 github.com/wailovet/nuwa v0.0.0-20220630140825-046b54961409/go.mod h1:cCyfv9BLTWx2GW7IdwR/MMpeYjbsTKf0LWC72mft4mI=
-github.com/wailovet/nuwa-android v0.0.0-20220801052203-cb541b5d393e h1:GyzShj0+56X/dT6f4kB9b0CYwDeFom/n0vKqQ2qhCPI=
-github.com/wailovet/nuwa-android v0.0.0-20220801052203-cb541b5d393e/go.mod h1:Ph3S65Kg6Oinwe8IdT+aAYDtViLZMn8DhmCsB4029jc=
+github.com/wailovet/nuwa-android v0.0.0-20220801060005-48a6141d9690 h1:ZruNu2LCJu/N2oxxVE35rm5mdKAZS0whxr/Cux7N2K8=
+github.com/wailovet/nuwa-android v0.0.0-20220801060005-48a6141d9690/go.mod h1:nb12r0kJp4io5yu2tzqfdEiei12YWO37BCY57zlw6Gw=
 github.com/wcharczuk/go-chart/v2 v2.1.0/go.mod h1:yx7MvAVNcP/kN9lKXM/NTce4au4DFN99j6i1OwDclNA=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
 github.com/xujiajun/gorouter v1.2.0/go.mod h1:yJrIta+bTNpBM/2UT8hLOaEAFckO+m/qmR3luMIQygM=
