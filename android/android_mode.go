@@ -26,7 +26,13 @@ func Run(title string, hes ...*nuwa.HttpEngine) {
 			time.Sleep(time.Second * 5)
 		}
 	})
-
+	for {
+		_, _, errs := nuwa.HttpClient().Get(fmt.Sprint("http://127.0.0.1:", port)).End()
+		if len(errs) == 0 {
+			break
+		}
+		time.Sleep(time.Second)
+	}
 	go func() {
 		w := app.NewWindow()
 		err := loop(w, title, port)
