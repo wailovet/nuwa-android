@@ -3,7 +3,7 @@ module github.com/wailovet/nuwa-android
 go 1.16
 
 require (
-	gioui.org v0.0.0-20220731233321-5326ca5fbe51
+	gioui.org v0.0.0-20220414170908-ad7c1eb78df3
 	github.com/elazarl/goproxy v0.0.0-20220529153421-8ea89ba92021 // indirect
 	github.com/go-chi/chi v1.5.4 // indirect
 	github.com/go-playground/form v3.1.4+incompatible // indirect
