@@ -6,7 +6,6 @@ import (
 
 	"gioui.org/app"
 	_ "gioui.org/app/permission/networkstate"
-	"gioui.org/io/system"
 	"github.com/inkeliz/gowebview"
 	"github.com/wailovet/gofunc"
 	"github.com/wailovet/nuwa"
@@ -47,46 +46,63 @@ func Run(title string, hes ...*nuwa.HttpEngine) {
 
 func loop(w *app.Window, title string, port int) error {
 
+	// th := material.NewTheme(gofont.Collection())
+	// var ops op.Ops
+
 	var (
 		config  = &gowebview.Config{URL: fmt.Sprint("http://127.0.0.1:", port), WindowConfig: &gowebview.WindowConfig{Title: title, VM: app.JavaVM()}}
 		webview gowebview.WebView
 	)
 
-	for {
-		e := <-w.Events()
-		switch e := e.(type) {
-		case app.ViewEvent:
-			//----------------------------------
-			config.WindowConfig.Window = e.View // Here, sets the GioView. ;)
-			//----------------------
-			if webview == nil {
-				go func() {
-					var err error
-					webview, err = gowebview.New(config)
-					if err != nil {
-						panic(err)
-					}
-					defer webview.Destroy()
-					webview.Run()
-				}()
-			} else {
-				webview.SetVisibility(gowebview.VisibilityMaximized)
-			}
-		case *system.CommandEvent:
-			// You can minimize when click on "Back", without destroy.
-			// It can be used when the webview is open in response to a button-click.
-			if e.Type == system.CommandBack {
-				e.Cancel = true
-				webview.SetVisibility(gowebview.VisibilityMinimized)
-			}
-		case system.DestroyEvent:
-			return e.Err
-		case system.FrameEvent:
-			if webview != nil {
-				webview.SetVisibility(gowebview.VisibilityMaximized)
-			}
-		}
+	var err error
+	webview, err = gowebview.New(config)
+	if err != nil {
+		panic(err)
 	}
+	defer webview.Destroy()
+	webview.Run()
+	return nil
+
+	// for {
+	// 	e := <-w.Events()
+	// 	switch e := e.(type) {
+	// 	case app.ViewEvent:
+	// 		//----------------------------------
+	// 		config.WindowConfig.Window = e.View // Here, sets the GioView. ;)
+	// 		//----------------------
+	// 		if webview == nil {
+	// 			go func() {
+	// 				var err error
+	// 				webview, err = gowebview.New(config)
+	// 				if err != nil {
+	// 					panic(err)
+	// 				}
+	// 				defer webview.Destroy()
+	// 				webview.Run()
+	// 			}()
+	// 		} else {
+	// 			webview.Run()
+	// 			webview.SetVisibility(gowebview.VisibilityMaximized)
+	// 		}
+	// 	case *system.CommandEvent:
+	// 		// You can minimize when click on "Back", without destroy.
+	// 		// It can be used when the webview is open in response to a button-click.
+	// 		if e.Type == system.CommandBack {
+	// 			e.Cancel = true
+	// 			webview.SetVisibility(gowebview.VisibilityMinimized)
+	// 		}
+	// 	case system.DestroyEvent:
+	// 		return e.Err
+	// 	case system.FrameEvent:
+	// 		// gtx := layout.NewContext(&ops, e)
+	// 		// l := material.H1(th, "Hello, Gio")
+	// 		// maroon := color.NRGBA{R: 127, G: 0, B: 0, A: 255}
+	// 		// l.Color = maroon
+	// 		// l.Alignment = text.Middle
+	// 		// l.Layout(gtx)
+	// 		// e.Frame(gtx.Ops)
+	// 	}
+	// }
 
 	// var wv gowebview.WebView
 	// for {
