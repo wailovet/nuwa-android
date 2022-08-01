@@ -2,17 +2,11 @@ package android
 
 import (
 	"fmt"
-	"image/color"
 	"time"
 
 	"gioui.org/app"
 	_ "gioui.org/app/permission/networkstate"
-	"gioui.org/font/gofont"
 	"gioui.org/io/system"
-	"gioui.org/layout"
-	"gioui.org/op"
-	"gioui.org/text"
-	"gioui.org/widget/material"
 	"github.com/inkeliz/gowebview"
 	"github.com/wailovet/gofunc"
 	"github.com/wailovet/nuwa"
@@ -53,9 +47,6 @@ func Run(title string, hes ...*nuwa.HttpEngine) {
 
 func loop(w *app.Window, title string, port int) error {
 
-	th := material.NewTheme(gofont.Collection())
-	var ops op.Ops
-
 	var (
 		config  = &gowebview.Config{URL: fmt.Sprint("http://127.0.0.1:", port), WindowConfig: &gowebview.WindowConfig{Title: title, VM: app.JavaVM()}}
 		webview gowebview.WebView
@@ -91,13 +82,9 @@ func loop(w *app.Window, title string, port int) error {
 		case system.DestroyEvent:
 			return e.Err
 		case system.FrameEvent:
-			gtx := layout.NewContext(&ops, e)
-			l := material.H1(th, "Hello, Gio")
-			maroon := color.NRGBA{R: 127, G: 0, B: 0, A: 255}
-			l.Color = maroon
-			l.Alignment = text.Middle
-			l.Layout(gtx)
-			e.Frame(gtx.Ops)
+			if webview != nil {
+				webview.SetVisibility(gowebview.VisibilityMaximized)
+			}
 		}
 	}
 

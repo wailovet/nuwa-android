@@ -438,8 +438,8 @@ github.com/wailovet/lorca v0.0.0-20220730170006-c9e3974c19d7 h1:zpDzBsoMk3hyLWm3
 github.com/wailovet/lorca v0.0.0-20220730170006-c9e3974c19d7/go.mod h1:hcmybp4dUEbjVCeTzmZSn3ee6EJIiYYf5w5E3doi/sA=
 github.com/wailovet/nuwa v0.0.0-20220630140825-046b54961409 h1:OW8cWuN23ymHZ+txpeV/VmVH7/bE6TYemivIp623yok=
 github.com/wailovet/nuwa v0.0.0-20220630140825-046b54961409/go.mod h1:cCyfv9BLTWx2GW7IdwR/MMpeYjbsTKf0LWC72mft4mI=
-github.com/wailovet/nuwa-android v0.0.0-20220801060005-48a6141d9690 h1:ZruNu2LCJu/N2oxxVE35rm5mdKAZS0whxr/Cux7N2K8=
-github.com/wailovet/nuwa-android v0.0.0-20220801060005-48a6141d9690/go.mod h1:nb12r0kJp4io5yu2tzqfdEiei12YWO37BCY57zlw6Gw=
+github.com/wailovet/nuwa-android v0.0.0-20220801085214-0affd5f12f62 h1:oQXxss0/7XJ4KOPsJSXDQFB4oiToN59LOD1PEerfWQg=
+github.com/wailovet/nuwa-android v0.0.0-20220801085214-0affd5f12f62/go.mod h1:nb12r0kJp4io5yu2tzqfdEiei12YWO37BCY57zlw6Gw=
 github.com/wcharczuk/go-chart/v2 v2.1.0/go.mod h1:yx7MvAVNcP/kN9lKXM/NTce4au4DFN99j6i1OwDclNA=
 github.com/xiang90/probing v0.0.0-20190116061207-43a291ad63a2/go.mod h1:UETIi67q53MR2AWcXfiuqkDkRtnGDLqkBTpCHuJHxtU=
 github.com/xujiajun/gorouter v1.2.0/go.mod h1:yJrIta+bTNpBM/2UT8hLOaEAFckO+m/qmR3luMIQygM=
