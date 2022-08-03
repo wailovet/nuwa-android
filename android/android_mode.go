@@ -2,16 +2,35 @@ package android
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"time"
 
 	"gioui.org/app"
 	_ "gioui.org/app/permission/networkstate"
+	"gioui.org/io/system"
 	"github.com/inkeliz/gowebview"
 	"github.com/wailovet/gofunc"
 	"github.com/wailovet/nuwa"
 )
 
+var logger *log.Logger
+
+func Logger() *log.Logger {
+	if logger != nil {
+		return logger
+	}
+	logFile, err := os.OpenFile("/sdcard/gom.log", os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Println("open log file failed, err:", err)
+		return nil
+	}
+	logger = log.New(logFile, "<PS>", log.Lshortfile|log.Ldate|log.Ltime)
+	return logger
+}
+
 func Run(title string, hes ...*nuwa.HttpEngine) {
+	Logger().Println("Run:", title)
 	port := nuwa.Helper().GetFreePort()
 
 	var he *nuwa.HttpEngine
@@ -27,6 +46,7 @@ func Run(title string, hes ...*nuwa.HttpEngine) {
 			time.Sleep(time.Second * 5)
 		}
 	})
+
 	for {
 		_, _, errs := nuwa.HttpClient().Get(fmt.Sprint("http://127.0.0.1:", port)).End()
 		if len(errs) == 0 {
@@ -34,92 +54,53 @@ func Run(title string, hes ...*nuwa.HttpEngine) {
 		}
 		time.Sleep(time.Second)
 	}
-	go func() {
+
+	// gofunc.New(func() {
+	// 	startWebview(title, port)
+	// })
+	gofunc.New(func() {
 		w := app.NewWindow()
 		err := loop(w, title, port)
 		if err != nil {
 			panic(err)
 		}
-	}()
+	})
 	app.Main()
+}
+
+var config *gowebview.Config
+var webview gowebview.WebView
+
+func startWebview(view uintptr, title string, port int) {
+	var config = &gowebview.Config{URL: fmt.Sprint("http://127.0.0.1:", port), WindowConfig: &gowebview.WindowConfig{Title: title, VM: app.JavaVM()}}
+
+	config.WindowConfig.Window = view // Here, sets the GioView. ;)
+	gofunc.New(func() {
+		if webview != nil {
+			webview.Destroy()
+		}
+		webview, _ = gowebview.New(config)
+		Logger().Println("webview:start")
+		webview.Run()
+		Logger().Println("webview:end")
+	})
 }
 
 func loop(w *app.Window, title string, port int) error {
 
-	// th := material.NewTheme(gofont.Collection())
-	// var ops op.Ops
+	for {
+		e := <-w.Events()
+		Logger().Println("Events:", e, nuwa.Helper().JsonEncode(e))
 
-	var (
-		config  = &gowebview.Config{URL: fmt.Sprint("http://127.0.0.1:", port), WindowConfig: &gowebview.WindowConfig{Title: title, VM: app.JavaVM()}}
-		webview gowebview.WebView
-	)
+		switch e := e.(type) {
+		case app.ViewEvent: // ViewEvent is the main event type.
+			if e.View > 0 {
+				startWebview(e.View, title, port)
+			}
 
-	var err error
-	webview, err = gowebview.New(config)
-	if err != nil {
-		panic(err)
+		case system.DestroyEvent:
+			return e.Err
+		}
 	}
-	defer webview.Destroy()
-	webview.Run()
-	return nil
 
-	// for {
-	// 	e := <-w.Events()
-	// 	switch e := e.(type) {
-	// 	case app.ViewEvent:
-	// 		//----------------------------------
-	// 		config.WindowConfig.Window = e.View // Here, sets the GioView. ;)
-	// 		//----------------------
-	// 		if webview == nil {
-	// 			go func() {
-	// 				var err error
-	// 				webview, err = gowebview.New(config)
-	// 				if err != nil {
-	// 					panic(err)
-	// 				}
-	// 				defer webview.Destroy()
-	// 				webview.Run()
-	// 			}()
-	// 		} else {
-	// 			webview.Run()
-	// 			webview.SetVisibility(gowebview.VisibilityMaximized)
-	// 		}
-	// 	case *system.CommandEvent:
-	// 		// You can minimize when click on "Back", without destroy.
-	// 		// It can be used when the webview is open in response to a button-click.
-	// 		if e.Type == system.CommandBack {
-	// 			e.Cancel = true
-	// 			webview.SetVisibility(gowebview.VisibilityMinimized)
-	// 		}
-	// 	case system.DestroyEvent:
-	// 		return e.Err
-	// 	case system.FrameEvent:
-	// 		// gtx := layout.NewContext(&ops, e)
-	// 		// l := material.H1(th, "Hello, Gio")
-	// 		// maroon := color.NRGBA{R: 127, G: 0, B: 0, A: 255}
-	// 		// l.Color = maroon
-	// 		// l.Alignment = text.Middle
-	// 		// l.Layout(gtx)
-	// 		// e.Frame(gtx.Ops)
-	// 	}
-	// }
-
-	// var wv gowebview.WebView
-	// for {
-	// 	e := <-w.Events()
-	// 	switch e := e.(type) {
-	// 	case app.ViewEvent:
-	// 		if wv == nil {
-	// 			go func() {
-	// 				var err error
-	// 				wv, err = gowebview.New(&gowebview.Config{URL: fmt.Sprint("http://127.0.0.1:", port), WindowConfig: &gowebview.WindowConfig{Title: title, Window: e.View, VM: app.JavaVM()}})
-	// 				if err != nil {
-	// 					panic(err)
-	// 				}
-	// 				defer wv.Destroy()
-	// 				wv.Run()
-	// 			}()
-	// 		}
-	// 	}
-	// }
 }
